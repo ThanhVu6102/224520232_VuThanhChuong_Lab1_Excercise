@@ -50,3 +50,72 @@ body {
 .skip-link:focus {
     top: 0;
 }
+
+
+/* ==========================================================================
+   SUB-TASK T-02B: 2D Grid Layout
+   ========================================================================== */
+
+/* 1. Header & Navigation */
+header {
+    background-color: var(--nav-bg);
+    padding: 1rem;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Hỗ trợ điều hướng bàn phím: Tạo viền rõ ràng khi focus */
+nav a:focus-visible, button:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+nav a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* 2. Grid Layout cho Main Content */
+main {
+    display: grid;
+    grid-template-columns: 1fr; /* Mặc định 1 cột cho mobile (375px) */
+    gap: 1.5rem;
+    padding: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%; /* Đảm bảo không tràn ngang */
+}
+
+section {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* 3. Responsive: Khi màn hình rộng hơn 768px, chuyển thành 2 cột */
+@media (min-width: 768px) {
+    main {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* 4. Nút Toggle Theme */
+#theme-toggle {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+}
