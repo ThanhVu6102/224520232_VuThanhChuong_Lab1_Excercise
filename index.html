@@ -1,89 +1,53 @@
 <!DOCTYPE html>
-<!-- ==========================================================================
-  Exercise 1: Semantic DOM Architecture & A11y Contract
-  Task WBS: T-01 | File: index.html (CHỈ HTML, không CSS/JS)
-  Quy tắc: 0 thẻ div — 100% dùng landmark ngữ nghĩa HTML5
-============================================================================== -->
 <html lang="en">
 <head>
-  <!-- Khai báo bảng mã + viewport: bắt buộc cho web hiện đại -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Mô tả trang: hỗ trợ SEO + screen reader -->
-  <meta name="description" content="Portfolio of Jane Doe, Lead Engineer — Semantic HTML and Accessibility demo.">
-  <title>Jane Doe, Lead Engineer — Portfolio</title>
-  <!-- CỐ Ý không có <link rel=stylesheet> hay <style> ở T-01:
-       gộp CSS vào commit này sẽ bị 0 điểm (One-shot prompt penalty).
-       CSS sẽ làm riêng ở Task T-02. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jane Doe - Lead Engineer Portfolio</title>
+    <!-- 
+      LƯU Ý: Không viết CSS ở đây. 
+      Bài tập yêu cầu commit HTML thuần túy (Atomic Commit). 
+      Việc gộp CSS sẽ bị tính 0 điểm (One-shot prompt penalty).
+    -->
 </head>
-
 <body>
-  <!-- ATOMIC MILESTONE T-01: No div tags allowed -->
 
-  <!-- STEP 3 — SKIP-LINK: phần tử focusable đầu tiên trong body.
-       - href="#main-content" phải khớp id của <main> bên dưới.
-       - Người dùng Tab → gặp link này đầu tiên → Enter → nhảy thẳng vào nội dung chính,
-         bỏ qua header/nav (chuẩn WCAG 2.4.1 Bypass Blocks). -->
-  <a href="#main-content" class="skip-link">
-    Skip to main content
-  </a>
-
-  <!-- LANDMARK 1/4 — BANNER: tiêu đề toàn trang.
-       - Chỉ dùng 1 <h1> duy nhất trong cả trang (chuẩn heading hierarchy).
-       - role="banner" giúp máy đọc màn hình cũ nhận diện đúng landmark. -->
-  <header role="banner">
-    <h1>Jane Doe, Lead Engineer</h1>
-    <!-- thẻ p là tag ngữ nghĩa cho đoạn mô tả, không dùng thẻ div hay span -->
-    <p>Building accessible, semantic web applications.</p>
-  </header>
-
-  <!-- LANDMARK 2/4 — NAVIGATION: menu chính.
-       - aria-label="Primary" để phân biệt khi có nhiều <nav> (VD: nav footer).
-       - Dùng <ul><li><a> là cấu trúc list chuẩn cho menu (screen reader đọc số lượng mục). -->
-  <nav role="navigation" aria-label="Primary">
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-    </ul>
-  </nav>
-
-  <!-- LANDMARK 3/4 — MAIN: nội dung chính, đích đến của skip-link.
-       - id="main-content" khớp href của skip-link.
-       - tabindex="-1" cho phép trình duyệt focus vào <main> khi nhảy từ skip-link (Chrome/Firefox).
-       - role="main" tường minh cho tương thích. -->
-  <main id="main-content" role="main" tabindex="-1">
-    <!-- SECTION 1: mỗi <section> phải có heading (h2) + aria-labelledby,
-         nếu không sẽ bị báo "unlabeled region" trong Accessibility Tree. -->
-    <section id="about" aria-labelledby="about-heading">
-      <h2 id="about-heading">About</h2>
-      <p>
-        Hello! I am Jane Doe, a Lead Engineer focused on semantic HTML,
-        accessibility (A11y), and modern web foundations.
-      </p>
-    </section>
-
-    <!-- SECTION 2: danh sách dự án dùng <article> vì mỗi dự án là nội dung độc lập,
-         có thể tái sử dụng/phân phối riêng (chuẩn HTML5 semantics). -->
-    <section id="projects" aria-labelledby="projects-heading">
-      <h2 id="projects-heading">Projects</h2>
-
-      <article aria-labelledby="project-1-heading">
-        <h3 id="project-1-heading">Accessible Portfolio Template</h3>
-        <p>Semantic landmark layout with skip-link and verified A11y tree.</p>
-      </article>
-
-      <article aria-labelledby="project-2-heading">
-        <h3 id="project-2-heading">Design System Docs</h3>
-        <p>Component documentation with correct heading order and landmarks.</p>
-      </article>
-    </section>
-  </main>
-
-  <!-- LANDMARK 4/4 — CONTENTINFO: chân trang (bản quyền/liên hệ).
-       - Hoàn thiện cây landmark: banner → navigation → main → contentinfo. -->
-  <footer role="contentinfo">
-    <p>© 2026 Jane Doe. Contact: <a href="mailto:jane.doe@example.com">jane.doe@example.com</a></p>
-  </footer>
+    <!-- ATOMIC MILESTONE T-01: No div tags allowed -->
+    
+    <!-- STEP 3: Implement accessible skip-link -->
+    <!-- Thẻ a này cho phép người dùng dùng phím Tab để nhảy thẳng tới nội dung chính -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Header với role banner (Vai trò banner giúp screen reader nhận diện đây là phần đầu trang) -->
+    <header role="banner">
+        <h1>Jane Doe, Lead Engineer</h1>
+    </header>
+    
+    <!-- Navigation với role navigation và aria-label để phân biệt với các nav khác nếu có -->
+    <nav role="navigation" aria-label="Primary">
+        <ul>
+            <!-- Các liên kết phải trỏ đúng đến ID của section tương ứng -->
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Main content với id để skip-link trỏ tới, và role main -->
+    <main id="main-content" role="main">
+        <!-- Section About -->
+        <section id="about">
+            <h2>About Me</h2>
+            <!-- Nội dung giả định (dấu ... trong hình) -->
+            <p>I am a Lead Engineer with expertise in semantic web architecture and accessibility.</p>
+        </section>
+        
+        <!-- Section Projects -->
+        <section id="projects">
+            <h2>Projects</h2>
+            <!-- Nội dung giả định (dấu ... trong hình) -->
+            <p>Here are some of the projects I have worked on...</p>
+        </section>
+    </main>
 
 </body>
 </html>
