@@ -1,0 +1,52 @@
+/* ==========================================================================
+   SUB-TASK T-02A: Tokens & Reset
+   ========================================================================== */
+
+/* 1. Định nghĩa CSS Variables (Tokens) cho Light Theme (Mặc định) */
+:root {
+    --bg-color: #f4f4f9;
+    --text-color: #111111; /* Đảm bảo độ tương phản WCAG AA (>= 4.5:1) */
+    --primary-color: #0056b3;
+    --card-bg: #ffffff;
+    --nav-bg: #e0e0e0;
+}
+
+/* 2. Định nghĩa CSS Variables cho Dark Theme */
+/* Khi thẻ html có thuộc tính data-theme="dark", các biến này sẽ ghi đè */
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0; /* Đảm bảo độ tương phản WCAG AA */
+    --primary-color: #66b3ff;
+    --card-bg: #1e1e1e;
+    --nav-bg: #2c2c2c;
+}
+
+/* 3. CSS Reset cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng mượt */
+}
+
+/* 4. Skip-link (từ Ex1) - Cần style để hoạt động đúng */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+    transition: top 0.3s;
+}
+.skip-link:focus {
+    top: 0;
+}
