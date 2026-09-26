@@ -10,6 +10,7 @@
       Việc gộp CSS sẽ bị tính 0 điểm (One-shot prompt penalty).
     -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="skeleton.css">
 </head>
 <body>
 
@@ -48,6 +49,13 @@
             <h2>Projects</h2>
             <!-- Nội dung giả định (dấu ... trong hình) -->
             <p>Here are some of the projects I have worked on...</p>
+        </section>
+        <section id="dashboard-component" aria-live="polite">
+            <div id="state-loading" class="state-container">
+                <div class="skeleton-item"></div>
+                <div class="skeleton-item"></div>
+                <div class="skeleton-item"></div>
+            </div>
         </section>
     </main>
 
