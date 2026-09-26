@@ -56,7 +56,32 @@
                 <div class="skeleton-item"></div>
                 <div class="skeleton-item"></div>
             </div>
+
+            <div id="state-live" class="state-container hidden">
+                <div class="metadata-badges">
+                    <span class="badge">Active</span>
+                    <span class="badge">Verified</span>
+                    <span class="badge">Pro</span>
+                </div>
+                <ul class="data-grid">
+                    <li class="data-card">Item 1</li>
+                    <li class="data-card">Item 2</li>
+                    <li class="data-card">Item 3</li>
+                    <li class="data-card">Item 4</li>
+                </ul>
+            </div>
+
+            <div id="state-empty" class="state-container hidden">
+                <p class="state-message">No data available.</p>
+                <button class="retry-btn" id="empty-retry-btn">Retry</button>
+            </div>
+            
+            <div id="state-error" class="state-container hidden">
+                <p class="state-message">Something went wrong. Please try again.</p>
+                <button class="retry-btn" id="error-retry-btn">Retry</button>
+            </div>
         </section>
+        
     </main>
 
         <!-- Nhúng JS -->
