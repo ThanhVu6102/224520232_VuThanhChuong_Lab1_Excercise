@@ -17,3 +17,18 @@
 3. **Ràng buộc kỹ thuật (Constraints):**
    - Không được gộp CSS chung với HTML trong cùng một commit (Atomic Commit).
    - Commit message bắt buộc: `feat(html): semantic landmark tree`.
+
+## WBS Task T-03: Resilient Component Architecture
+
+### State Machine Definition (Máy trạng thái)
+Component sẽ trải qua các trạng thái sau:
+1. **LOADING**: Hiển thị Skeleton Shimmer (Pure CSS).
+2. **LIVE_DATA**: Hiển thị dữ liệu thật (Flexbox metadata badges & Grid list).
+3. **EMPTY**: Hiển thị khi không có dữ liệu, kèm nút Retry.
+4. **ERROR**: Hiển thị khi có lỗi xảy ra, kèm nút Retry có thể truy cập được (accessible).
+
+**Luồng chuyển đổi (Transitions):**
+- `FETCH_START` -> LOADING
+- `FETCH_SUCCESS` -> LIVE_DATA (nếu có data) hoặc EMPTY (nếu mảng rỗng)
+- `FETCH_FAIL` -> ERROR
+- `RETRY` -> LOADING
